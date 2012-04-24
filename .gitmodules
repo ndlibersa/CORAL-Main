@@ -4,3 +4,6 @@
 [submodule "resources"]
 	path = resources
 	url = git://github.com/ndlibersa/resources.git
+[submodule "licensing"]
+	path = licensing
+	url = git://github.com/ndlibersa/licensing.git
