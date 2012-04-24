@@ -10,3 +10,6 @@
 [submodule "terms"]
 	path = terms
 	url = git://github.com/ndlibersa/terms.git
+[submodule "organizations"]
+	path = organizations
+	url = git://github.com/ndlibersa/organizations.git
