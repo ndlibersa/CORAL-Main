@@ -16,3 +16,6 @@
 [submodule "usage"]
 	path = usage
 	url = git://github.com/ndlibersa/usage.git
+[submodule "reports"]
+	path = reports
+	url = git://github.com/ndlibersa/reports.git
