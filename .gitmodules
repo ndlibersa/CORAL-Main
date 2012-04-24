@@ -7,3 +7,6 @@
 [submodule "licensing"]
 	path = licensing
 	url = git://github.com/ndlibersa/licensing.git
+[submodule "terms"]
+	path = terms
+	url = git://github.com/ndlibersa/terms.git
