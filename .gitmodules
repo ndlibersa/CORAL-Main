@@ -1,3 +1,6 @@
 [submodule "auth"]
 	path = auth
 	url = git://github.com/ndlibersa/auth.git
+[submodule "resources"]
+	path = resources
+	url = git://github.com/ndlibersa/resources.git
