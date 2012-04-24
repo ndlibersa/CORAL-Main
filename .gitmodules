@@ -13,3 +13,6 @@
 [submodule "organizations"]
 	path = organizations
 	url = git://github.com/ndlibersa/organizations.git
+[submodule "usage"]
+	path = usage
+	url = git://github.com/ndlibersa/usage.git
