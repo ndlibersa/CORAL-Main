@@ -1,0 +1,21 @@
+[submodule "auth"]
+	path = auth
+	url = git://github.com/ndlibersa/auth.git
+[submodule "resources"]
+	path = resources
+	url = git://github.com/ndlibersa/resources.git
+[submodule "licensing"]
+	path = licensing
+	url = git://github.com/ndlibersa/licensing.git
+[submodule "terms"]
+	path = terms
+	url = git://github.com/ndlibersa/terms.git
+[submodule "organizations"]
+	path = organizations
+	url = git://github.com/ndlibersa/organizations.git
+[submodule "usage"]
+	path = usage
+	url = git://github.com/ndlibersa/usage.git
+[submodule "reports"]
+	path = reports
+	url = git://github.com/ndlibersa/reports.git
