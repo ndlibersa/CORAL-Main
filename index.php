@@ -29,31 +29,39 @@ for($i=0; $i<count($parts) - 1; $i++){
 
 		<div class="icons">
 
-		<?php if (file_exists($pagePath . "resources/index.php")) {?>
-		<a href='resources/'><img src='images/icon-resources.png' hover="images/icon-resources-hover.png" class="rollover" /></a>
-		<?php } else { ?>
-		<img src='images/icon-resources-off.png'>
-		<?php } ?>
+			<?php if (file_exists($pagePath . "resources/index.php")) {?>
+				<a href='resources/'><img src='images/icon-resources.png' hover="images/icon-resources-hover.png" class="rollover" /></a>
+			<?php } else { ?>
+				<img src='images/icon-resources-off.png'>
+			<?php } ?>
 
-		<?php if (file_exists($pagePath . "licensing/index.php")) {?>
-		<a href='licensing/'><img src='images/icon-licensing.png' hover="images/icon-licensing-hover.png" class="rollover" /></a>
-		<?php } else { ?>
-		<div><img src='images/icon-licensing-off.png' /></div>
-		<?php } ?>
+			<?php if (file_exists($pagePath . "licensing/index.php")) {?>
+				<a href='licensing/'><img src='images/icon-licensing.png' hover="images/icon-licensing-hover.png" class="rollover" /></a>
+			<?php } else { ?>
+				<div><img src='images/icon-licensing-off.png' /></div>
+			<?php } ?>
 
-		<?php if (file_exists($pagePath . "organizations/index.php")) {?>
-		<a href='organizations/'><img src='images/icon-organizations.png' hover="images/icon-organizations-hover.png" class="rollover" /></a>
-		<?php } else { ?>
-		<img src='images/icon-organizations-off.png' />
-		<?php } ?>
+			<?php if (file_exists($pagePath . "organizations/index.php")) {?>
+				<a href='organizations/'><img src='images/icon-organizations.png' hover="images/icon-organizations-hover.png" class="rollover" /></a>
+			<?php } else { ?>
+				<img src='images/icon-organizations-off.png' />
+			<?php } ?>
 
-		<?php if (file_exists($pagePath . "usage/index.php")) {?>
-		<a href='usage/'><img src='images/icon-usage.png' hover="images/icon-usage-hover.png" class="rollover" /></a>
-		<?php } else { ?>
-		<img src='images/icon-usage-off.png' />
-		<?php } ?>
+			<?php if (file_exists($pagePath . "usage/index.php")) {?>
+				<a href='usage/'><img src='images/icon-usage.png' hover="images/icon-usage-hover.png" class="rollover" /></a>
+			<?php } else { ?>
+				<img src='images/icon-usage-off.png' />
+			<?php } ?>
+			
+			<?php if (file_exists($pagePath . "management/index.php")) {?>
+				<a href='management/'><img src='images/icon-management.png' hover="images/icon-management-hover.png" class="rollover" /></a>
+			<?php } else { ?>
+				<img src='images/icon-usage-off.png' />
+			<?php } ?>
 
-	</div>
+		</div>
+		
+		<img src="images/logo-powered-by.jpg" id="powered-by" />
 
 </div>
 
