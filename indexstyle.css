@@ -471,16 +471,18 @@ input.dp-applied {
 /*--- Custom CSS for Main Page ---*/
 
 #wrapper-main {
-  height: 65px;
-  background: #1B77AA;
-  margin: 0 auto;
-  padding-top: 35px;
+	height: 65px;
+	background: #1B77AA;
+	margin: 0 auto;
+	padding-top: 35px;
 }
 
 .icons {
-  margin-top: 31px;
-  background: #fff;
-  padding: 30px 0;
+	margin-top: 31px;
+	background: #fff;
+	padding: 30px 0;
+	display: flex;
+	justify-content: center;
 }
 
 .icons img {
@@ -488,10 +490,40 @@ input.dp-applied {
 }
 
 #title-main img#title-small {
-    display: none;
-  }
+	display: none;
+}
 
-@media only screen and (max-width: 600px) {
+.main-page-icons {
+	margin: 0 30px;
+	width: 160px;
+}
+
+.main-page-icons a {
+	display: block;
+	text-decoration: none;
+}
+
+.main-page-icons span {
+    font-family: "Open Sans", arial;
+    text-decoration: none;
+    font-size: 21px;
+    color: #777;
+    font-weight: 100;
+}
+
+.main-page-icons:hover {
+	cursor: pointer;
+}
+
+.main-page-icons span {
+    display: block;
+}
+
+.main-page-icons-off:hover {
+	cursor: initial;
+}
+
+/*@media only screen and (max-width: 600px) {
   #title-main img#title-big {
     display: none;
   }
@@ -504,7 +536,7 @@ input.dp-applied {
   .icons {
   margin-top: 34px;
   }
-}
+}*/
 
 /*--- Control Powered By Logo on Main Menu Page ---*/
 
