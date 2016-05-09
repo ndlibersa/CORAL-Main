@@ -46,8 +46,7 @@ include_once 'directory.php';
 <div id="wrapper-main">
 
 	<div id="title-main">
-		<img src='images/title-main.png' id="title-big">
-		<img src='images/title-main-small.png' id="title-small">
+		<div id="main-page-title"><strong><?php echo _("eRM");?></strong> &bullet; <?php echo _("eResource Management");?></div>
 		<div class='boxRight'>
 			<p class="fontText"><?= _("Change language:");?></p>
 			<select name="lang" id="lang" class="dropDownLang">
@@ -91,6 +90,7 @@ include_once 'directory.php';
 			</select>
 		</div>
 	</div>
+</div>
 
 		<div class="icons">
 		
@@ -167,9 +167,9 @@ include_once 'directory.php';
 
 		</div>
 		
-		<img src="images/logo-powered-by.jpg" id="powered-by" />
+		<div id="powered-by-text"><?php echo _("Powered by");?><img src="images/logo-coral.jpg" /></div>
 
-</div>
+
 <script>
     /*
      * Functions to change the language with the dropdown

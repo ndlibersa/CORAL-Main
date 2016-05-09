@@ -471,14 +471,13 @@ input.dp-applied {
 /*--- Custom CSS for Main Page ---*/
 
 #wrapper-main {
-	height: 65px;
 	background: #1B77AA;
 	margin: 0 auto;
-	padding-top: 35px;
+	padding-top: 30px;
+    padding-bottom: 20px;
 }
 
 .icons {
-	margin-top: 31px;
 	background: #fff;
 	padding: 30px 0;
 	display: flex;
@@ -523,23 +522,33 @@ input.dp-applied {
 	cursor: initial;
 }
 
-/*@media only screen and (max-width: 600px) {
-  #title-main img#title-big {
-    display: none;
-  }
-  #title-main img#title-small {
-    display: initial;
-  }
-  #wrapper-main {
-    height: 90px;
-  }
-  .icons {
-  margin-top: 34px;
-  }
-}*/
-
 /*--- Control Powered By Logo on Main Menu Page ---*/
 
 #powered-by {
  margin-top: 30px;
+}
+
+/*--- Language Menu for Main Page ---*/
+
+p.fontText {
+    display: inline-block;
+    color: #fff;
+    font-weight: 600;
+}
+
+div#main-page-title {
+    font-size: 28px;
+    color: #fff;
+    font-family: "Open Sans";
+}
+
+#powered-by-text img {
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+div#powered-by-text {
+    color: #687FA1;
+    margin-top: 20px;
+    font-size: 14px;
 }
