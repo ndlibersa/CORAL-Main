@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: messages\n"
-"POT-Creation-Date: 2016-05-09 13:30-0600\n"
-"PO-Revision-Date: 2016-05-09 13:39-0600\n"
+"POT-Creation-Date: 2016-05-11 14:32-0600\n"
+"PO-Revision-Date: 2016-05-11 14:44-0600\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: fr_FR\n"
@@ -15,30 +15,42 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: .\n"
 
-#: index.php:48
+#: index.php:49
+msgid "eRM"
+msgstr "eRM"
+
+#: index.php:49
+msgid "eResource Management"
+msgstr "Gestion des ressources électroniques"
+
+#: index.php:51
 msgid "Change language:"
 msgstr "Modifier la langue:"
 
-#: index.php:64
+#: index.php:67
 msgid "Invalid translation route!"
 msgstr "Chemin d'accès aux traductions invalide!"
 
-#: index.php:97 index.php:102
+#: index.php:101 index.php:106
 msgid "Resources"
 msgstr "Ressources"
 
-#: index.php:112 index.php:117
+#: index.php:116 index.php:121
 msgid "Licensing"
 msgstr "Licences"
 
-#: index.php:126 index.php:131
+#: index.php:130 index.php:135
 msgid "Organizations"
 msgstr "Organisations"
 
-#: index.php:140 index.php:145
+#: index.php:144 index.php:149
 msgid "Usage Statistics"
 msgstr "Statistiques d'utilisation"
 
-#: index.php:154 index.php:159
+#: index.php:158 index.php:163
 msgid "Management"
 msgstr "Gestion"
+
+#: index.php:170
+msgid "Powered by"
+msgstr "Alimenté par"
