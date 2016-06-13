@@ -1,17 +1,33 @@
 <?php
-//determine CORAL main path so we can check each module below to know which to display
-$pagePath = $_SERVER["DOCUMENT_ROOT"];
+	//determine CORAL main path so we can check each module below to know which to display
+	$pagePath = $_SERVER["DOCUMENT_ROOT"];
 
-$currentFile = $_SERVER["SCRIPT_NAME"];
-$parts = Explode('/', $currentFile);
-for($i=0; $i<count($parts) - 1; $i++){
-	$pagePath .= $parts[$i] . '/';
-}
+	$currentFile = $_SERVER["SCRIPT_NAME"];
+	$parts = Explode('/', $currentFile);
+	for($i=0; $i<count($parts) - 1; $i++){
+		$pagePath .= $parts[$i] . '/';
+	}
 
-session_start();
+	session_start();
 
-include_once 'directory.php';
+	// Include file of language codes
+	include_once 'LangCodes.php';
+	$lang_name = new LangCodes();
 
+	// Verify the language of the browser
+	global $http_lang;
+	if(isset($_COOKIE["lang"])){
+	    $http_lang = $_COOKIE["lang"];
+	}else{        
+	    $codeL = str_replace("-","_",substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5));
+	    $http_lang = $lang_name->getLanguage($codeL);
+	    if($http_lang == "")
+	      $http_lang = "en_US";
+	}
+	putenv("LC_ALL=$http_lang");
+	setlocale(LC_ALL, $http_lang.".utf8");
+	bindtextdomain("messages", dirname(__FILE__) . "/locale");
+	textdomain("messages");
 ?>
 
 
@@ -25,6 +41,7 @@ include_once 'directory.php';
 <script type="text/javascript" src="js/plugins/jquery.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
 <script type="text/javascript" src="js/plugins/Gettext.js"></script>
+
 <?php
     // Add translation for the JavaScript files
     global $http_lang;
