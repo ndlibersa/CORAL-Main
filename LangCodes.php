@@ -12,7 +12,7 @@ class LangCodes{
             //'zh_TW'=>'zh_TW',
             //'de_DE'=>'de_DE'
         );
-        return $all_lang[$code];
+        return array_key_exists($code, $all_lang) ? $all_lang[$code] : "en_US";
     }
     public function getNameLang($code_lang){
         $name_lang=array(
@@ -22,7 +22,7 @@ class LangCodes{
             //'zh_TW'=>'中文 (台灣)',
             //'de_DE'=>'Deutsch'
         );
-        return $name_lang[$code_lang];
+        return array_key_exists($code_lang, $name_lang) ? $name_lang[$code_lang] : "English";
     }
 }
 ?>
