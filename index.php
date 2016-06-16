@@ -1,13 +1,33 @@
 <?php
-//determine CORAL main path so we can check each module below to know which to display
-$pagePath = $_SERVER["DOCUMENT_ROOT"];
+	//determine CORAL main path so we can check each module below to know which to display
+	$pagePath = $_SERVER["DOCUMENT_ROOT"];
 
-$currentFile = $_SERVER["SCRIPT_NAME"];
-$parts = Explode('/', $currentFile);
-for($i=0; $i<count($parts) - 1; $i++){
-	$pagePath .= $parts[$i] . '/';
-}
+	$currentFile = $_SERVER["SCRIPT_NAME"];
+	$parts = Explode('/', $currentFile);
+	for($i=0; $i<count($parts) - 1; $i++){
+		$pagePath .= $parts[$i] . '/';
+	}
 
+	session_start();
+
+	// Include file of language codes
+	include_once 'LangCodes.php';
+	$lang_name = new LangCodes();
+
+	// Verify the language of the browser
+	global $http_lang;
+	if(isset($_COOKIE["lang"])){
+	    $http_lang = $_COOKIE["lang"];
+	}else{        
+	    $codeL = str_replace("-","_",substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5));
+	    $http_lang = $lang_name->getLanguage($codeL);
+	    if($http_lang == "")
+	      $http_lang = "en_US";
+	}
+	putenv("LC_ALL=$http_lang");
+	setlocale(LC_ALL, $http_lang.".utf8");
+	bindtextdomain("messages", dirname(__FILE__) . "/locale");
+	textdomain("messages");
 ?>
 
 
@@ -15,68 +35,174 @@ for($i=0; $i<count($parts) - 1; $i++){
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>CORAL - Centralized Online Resources Acquisitions and Licensing</title>
+<title>eRM - eResource Management</title>
 <link rel="stylesheet" href="indexstyle.css" type="text/css" media="screen" />
 <link rel="SHORTCUT ICON" href="images/favicon.ico" />
 <script type="text/javascript" src="js/plugins/jquery.js"></script>
 <script type="text/javascript" src="js/common.js"></script>
+<script type="text/javascript" src="js/plugins/Gettext.js"></script>
+
+<?php
+    // Add translation for the JavaScript files
+    global $http_lang;
+    $str = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
+    $default_l = $lang_name->getLanguage($str);
+    if($default_l==null || empty($default_l)){$default_l=$str;}
+    if(isset($_COOKIE["lang"])){
+        if($_COOKIE["lang"]==$http_lang && $_COOKIE["lang"] != "en_US"){
+            echo "<link rel='gettext' type='application/x-po' href='./locale/".$http_lang."/LC_MESSAGES/messages.po' />";
+        }
+    }else if($default_l==$http_lang && $default_l != "en_US"){
+            echo "<link rel='gettext' type='application/x-po' href='./locale/".$http_lang."/LC_MESSAGES/messages.po' />";
+    }
+?>
+
 </head>
 <body>
-<center>
-	<table class="background">
-	<tr>
-	<td>
-		<center>
-		<table style='margin-top:123px;width:560px;height:420px;'>
-		<tr valign='top' style='height:356px;'>
-			<td>
-				<center>
-				<div style='margin-top:12px;'>
-				<table class='logos'>
 
-				<tr>
+<div id="wrapper-main">
+
+	<div id="title-main">
+		<div id="main-page-title"><strong><?php echo _("eRM");?></strong> &bullet; <?php echo _("eResource Management");?></div>
+		<div class='boxRight'>
+			<p class="fontText"><?= _("Change language:");?></p>
+			<select name="lang" id="lang" class="dropDownLang">
+				<?php
+	            // Get all translations on the 'locale' folder
+	            $route='locale';
+	            $lang[]="en_US"; // add default language
+	            if (is_dir($route)) { 
+	                if ($dh = opendir($route)) { 
+	                    while (($file = readdir($dh)) !== false) {
+	                        if (is_dir("$route/$file") && $file!="." && $file!=".."){
+	                            $lang[]=$file;
+	                        } 
+	                    } 
+	                    closedir($dh); 
+	                } 
+	            }else {
+	                echo "<br>"._("Invalid translation route!"); 
+	            }
+	            // Get language of navigator
+	            $defLang = substr($_SERVER["HTTP_ACCEPT_LANGUAGE"],0,5);
+	            
+	            // Show an ordered list
+	            sort($lang); 
+	            for($i=0; $i<count($lang); $i++){
+	                if(isset($_COOKIE["lang"])){
+	                    if($_COOKIE["lang"]==$lang[$i]){
+	                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
+	                    }else{
+	                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
+	                    }
+	                }else{
+	                    if($defLang==substr($lang[$i],0,5)){
+	                        echo "<option value='".$lang[$i]."' selected='selected'>".$lang_name->getNameLang($lang[$i])."</option>";
+	                    }else{
+	                        echo "<option value='".$lang[$i]."'>".$lang_name->getNameLang($lang[$i])."</option>";
+	                    }
+	                }
+	            }
+				?>
+			</select>
+		</div>
+	</div>
+</div>
+
+		<div class="icons">
+		
+			<div class='main-page-icons'>
 				<?php if (file_exists($pagePath . "resources/index.php")) {?>
-				<td style='width:52px;'><img src='images/butterflyfishlogo.gif' hover="images/butterflyfishlogo_over.gif" id="logo_butterflyfish" /></td><td style='width:194px;'><a href='resources/'><img src='images/resources.gif' hover="images/resources_over.gif" class="rollover" id="butterflyfish" /></a></td>
+					<a href='resources/'>
+						<img src='images/icon-resources.png' hover="images/icon-resources-hover.png" class="rollover" />
+						<span><?php echo _("Resources");?></span>
+					</a>
 				<?php } else { ?>
-				<td style='width:52px;'><img src='images/butterflyfishlogo.gif' /></td><td style='width:194px;'><img src='images/resources_off.gif' id="butterflyfish" /></td>
+					<div class='main-page-icons-off'>
+						<img src='images/icon-resources-off.png'>
+						<span><?php echo _("Resources");?></span>
+					</div>
 				<?php } ?>
-				</tr>
+			</div>
 
-				<tr>
+		
+			<div class='main-page-icons'>
 				<?php if (file_exists($pagePath . "licensing/index.php")) {?>
-				<td style='width:52px;'><img src='images/angelfishlogo.gif' hover="images/angelfishlogo_over.gif" id="logo_angelfish" /></td><td style='width:194px;'><a href='licensing/'><img src='images/licensing.gif' hover="images/licensing_over.gif" class="rollover" id="angelfish" /></a></td>
+					<a href='licensing/'>
+						<img src='images/icon-licensing.png' hover="images/icon-licensing-hover.png" class="rollover" />
+						<span><?php echo _("Licensing");?></span>
+					</a>
 				<?php } else { ?>
-				<td style='width:52px;'><img src='images/angelfishlogo.gif' /></td><td style='width:194px;'><img src='images/licensing_off.gif' id="angelfish" /></td>
+					<div class='main-page-icons-off'>
+						<img src='images/icon-licensing-off.png' />
+						<span><?php echo _("Licensing");?></span>
+					</div>
 				<?php } ?>
-				</tr>
+			</div>
 
-				<tr>
+			<div class='main-page-icons'>
 				<?php if (file_exists($pagePath . "organizations/index.php")) {?>
-				<td style='width:52px;'><img src='images/turtlelogo.gif' hover="images/turtlelogo_over.gif" id="logo_turtle" /></td><td style='width:194px;'><a href='organizations/'><img src='images/organizations.gif' hover="images/organizations_over.gif" class="rollover" id="turtle" /></a></td>
+					<a href='organizations/'>
+						<img src='images/icon-organizations.png' hover="images/icon-organizations-hover.png" class="rollover" />
+						<span><?php echo _("Organizations");?></span>
+					</a>
 				<?php } else { ?>
-				<td style='width:52px;'><img src='images/turtlelogo.gif' /></td><td style='width:194px;'><img src='images/organizations_off.gif' id="angelfish" /></td>
+					<div class='main-page-icons-off'>
+						<img src='images/icon-organizations-off.png' />
+						<span><?php echo _("Organizations");?></span>
+					</div>
 				<?php } ?>
-				</tr>
+			</div>
 
-				<tr>
+			<div class='main-page-icons'>
 				<?php if (file_exists($pagePath . "usage/index.php")) {?>
-				<td style='width:52px;'><img src='images/seahorselogo.gif' hover="images/seahorselogo_over.gif" id="logo_seahorse" /></td><td style='width:194px;'><a href='usage/'><img src='images/usagestatistics.gif' hover="images/usagestatistics_over.gif" class="rollover" id="seahorse" /></a></td>
+					<a href='usage/'>
+						<img src='images/icon-usage.png' hover="images/icon-usage-hover.png" class="rollover" />
+						<span><?php echo _("Usage Statistics");?></span>
+					</a>	
 				<?php } else { ?>
-				<td style='width:52px;'><img src='images/seahorselogo.gif' /></td><td style='width:194px;'><img src='images/usagestatistics_off.gif' id="angelfish" /></td>
+					<div class='main-page-icons-off'>
+						<img src='images/icon-usage-off.png' />
+						<span><?php echo _("Usage Statistics");?></span>
+					</div>
 				<?php } ?>
-				</tr>
-				</table>
+			</div>
+		
+			<div class='main-page-icons'>
+				<?php if (file_exists($pagePath . "management/index.php")) {?>
+					<a href='management/'>
+						<img src='images/icon-management.png' hover="images/icon-management-hover.png" class="rollover" />
+						<span><?php echo _("Management");?></span>
+					</a>
+				<?php } else { ?>
+					<div class='main-page-icons-off'>
+						<img src='images/icon-management-off.png' />
+						<span><?php echo _("Management");?></span>
+					</div>
+				<?php } ?>
+			</div>
 
-				</div>
-				</center>
-			</td>
-		</tr>
-		</table>
-		</center>
-	</td>
-	</tr>
-	</table>
+		</div>
+		
+		<div id="powered-by-text"><?php echo _("Powered by");?><img src="images/logo-coral.jpg" /></div>
 
-</center>
+
+<script>
+    /*
+     * Functions to change the language with the dropdown
+     */
+    $("#lang").change(function() {
+        setLanguage($("#lang").val());
+        location.reload();
+    });
+    // Create a cookie with the code of language
+    function setLanguage(lang) {
+		var wl = window.location, now = new Date(), time = now.getTime();
+        var cookievalid=2592000000; // 30 days (1000*60*60*24*30)
+        time += cookievalid;
+		now.setTime(time);
+		document.cookie ='lang='+lang+';path=/'+';domain='+wl.host+';expires='+now;
+    }
+</script>
 </body>
 </html>

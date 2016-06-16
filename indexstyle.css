@@ -11,12 +11,23 @@ body {
  font-family: "arial";
  font-size: 10pt;
  font-weight: heavy;
- background: #FFFFFF;
+ /*---
+  background: #FFFFFF;
+ ---*/
  margin: 0; /* it's good practice to zero the margin and padding of the body element to account for differing browser defaults */
  padding: 0;
  vertical-align:top;
  text-align: center; /* this centers the container in IE 5* browsers. The text is then set to the left aligned default in the #container selector */
- 
+ background: #E7E8E8 url(images/bg-gray-texture.jpg) repeat top left;
+ -webkit-font-smoothing: antialiased;
+}
+
+/*-----*/
+
+#wrapper {
+ margin: 0 auto -2em;
+ background-image: url("images/back-header.jpg");
+ background-repeat: repeat-x;
 }
 
 .wrapper {
@@ -61,7 +72,16 @@ fieldset {border:0;}
 
 div.coralbutton{margin:7px;}
 
-table.background {background-image:url('images/background.jpg');background-repeat:no-repeat;width:900px;height:601px;margin-top:3px;}
+/*-----*/
+
+table.background {
+ background-image:url('images/background.png');
+ background-repeat:no-repeat;
+ margin-top:3px;
+ width: 636px;
+ margin: 0 auto;
+ margin-top: 0px;
+}
 table.background tr{vertical-align:top;}
 table.background td{text-align:center;}
 
@@ -447,3 +467,88 @@ input.dp-applied {
 
 .adminAddInput{margin-top:5px;}
 .licenseAddInput{margin-top:5px;margin-bottom;5px;}
+
+/*--- Custom CSS for Main Page ---*/
+
+#wrapper-main {
+	background: #1B77AA;
+	margin: 0 auto;
+	padding-top: 30px;
+    padding-bottom: 20px;
+}
+
+.icons {
+	background: #fff;
+	padding: 30px 0;
+	display: flex;
+	justify-content: center;
+}
+
+.icons img {
+  padding: 25px;
+}
+
+#title-main img#title-small {
+	display: none;
+}
+
+.main-page-icons {
+	margin: 0 30px;
+	width: 160px;
+}
+
+.main-page-icons a {
+	display: block;
+	text-decoration: none;
+}
+
+.main-page-icons span {
+    font-family: "Open Sans", arial;
+    text-decoration: none;
+    font-size: 21px;
+    color: #777;
+    font-weight: 100;
+}
+
+.main-page-icons:hover {
+	cursor: pointer;
+}
+
+.main-page-icons span {
+    display: block;
+}
+
+.main-page-icons-off:hover {
+	cursor: initial;
+}
+
+/*--- Control Powered By Logo on Main Menu Page ---*/
+
+#powered-by {
+ margin-top: 30px;
+}
+
+/*--- Language Menu for Main Page ---*/
+
+p.fontText {
+    display: inline-block;
+    color: #fff;
+    font-weight: 600;
+}
+
+div#main-page-title {
+    font-size: 28px;
+    color: #fff;
+    font-family: "Open Sans";
+}
+
+#powered-by-text img {
+    vertical-align: middle;
+    margin-left: 8px;
+}
+
+div#powered-by-text {
+    color: #687FA1;
+    margin-top: 20px;
+    font-size: 14px;
+}
